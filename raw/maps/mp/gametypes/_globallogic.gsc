@@ -3790,6 +3790,7 @@ Callback_StartGameType()
 	thread maps\mp\gametypes\_battlechatter_mp::init();
 
 	thread maps\mp\gametypes\_hardpoints::init();
+	thread maps\mp\gametypes\_utils::mess_nextmap();
 
 	if ( level.teamBased )
 		thread maps\mp\gametypes\_friendicons::init();
