@@ -1,10 +1,44 @@
+
 mess_nextmap()
 {
+	
+	level.MapNames = [];
+	level.MapNames["mp_convoy"] = "Ambush";
+	level.MapNames["mp_backlot"] = "Backlot";
+	level.MapNames["mp_bloc"] = "Bloc";
+	level.MapNames["mp_bog"] = "Bog";
+	level.MapNames["mp_broadcast"] = "Broadcast";
+	level.MapNames["mp_carentan"] = "Chinatown";
+	level.MapNames["mp_countdown"] = "Countdown";
+	level.MapNames["mp_crash"] = "Crash";		
+	level.MapNames["mp_creek"] = "Creek";
+	level.MapNames["mp_crossfire"] = "Crossfire";
+	level.MapNames["mp_citystreets"] = "District";
+	level.MapNames["mp_farm"] = "Downpour";
+	level.MapNames["mp_killhouse"] = "Killhouse";	
+	level.MapNames["mp_overgrown"] = "Overgrown";
+	level.MapNames["mp_pipeline"] = "Pipeline";
+	level.MapNames["mp_shipment"] = "Shipment";
+	level.MapNames["mp_showdown"] = "Showdown";
+	level.MapNames["mp_strike"] = "Strike";
+	level.MapNames["mp_vacant"] = "Vacant";
+	level.MapNames["mp_cargoship"] = "Wet Work";
+	level.MapNames["mp_crash_snow"] = "Winter Crash";
+	
+	level.GametypeNames = [];
+	level.GametypeNames["dm"] = "Free for All";
+	level.GametypeNames["dom"] = "Domination";
+	level.GametypeNames["koth"] = "Headquarters";
+	level.GametypeNames["sab"] = "Sabotage";
+	level.GametypeNames["sd"] = "Search and Destroy";
+	level.GametypeNames["war"] = "Team Deathmatch";
+	
 	for( ;; )
 	{
-	self Get_Next_Map();
+	IPrintLn( self Get_Next_Map() );
 	wait 30;
 	}
+
 }
 
 Get_Next_Map()
@@ -70,7 +104,7 @@ Get_Next_Map()
 	if (!isdefined(gt))
 		gt = getDvar("g_gametype");
 
-	nextmap = "^3Next Map: ^2" + map + " (" + gt + ")";
+	nextmap = "^3Next Map: ^2" + level.MapNames[ map ] + " (" + level.GametypeNames[ gt ] + ")";
 
 	return nextmap;
 }
