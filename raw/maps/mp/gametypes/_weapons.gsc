@@ -110,6 +110,7 @@ onPlayerConnect()
 		player.hits = 0;
 
 		player thread onPlayerSpawned();
+		player thread onJoinedTeam();
 	}
 }
 
@@ -131,6 +132,40 @@ onPlayerSpawned()
 		self.tookWeaponFrom = [];
 		
 		self thread updateStowedWeapon();
+	}
+}
+
+onJoinedTeam()
+{
+	self endon("disconnect");
+	
+	for(;;)
+	{
+		self waittill("joined_team");
+		self antiNadeSwitch();
+	}
+}
+
+antiNadeSwitch()
+{
+	if ( getdvar("scr_antinadeswitch") == "" )
+		setdvar("scr_antinadeswitch", "1");
+	if ( getdvarint("scr_antinadeswitch") == 1 )
+	{
+		if ( isdefined( self.grenade ) )
+		{
+			for ( i = 0; i < self.grenade.size; i++ )
+			{
+				if ( isdefined(self.grenade[i]) )
+					self.grenade[i] delete();
+			}
+		}
+		self.grenade = [];
+	}
+	else
+	{
+		if ( !isdefined( self.grenade ) )
+			self.grenade = [];
 	}
 }
 
@@ -628,8 +663,10 @@ beginGrenadeTracking()
 	
 	startTime = getTime();
 	
-	self waittill ( "grenade_fire", grenade, weaponName );
+	self.grenade = [];
 	
+	self waittill ( "grenade_fire", grenade, weaponName );
+	self.grenade[self.grenade.size] = grenade;
 	if ( (getTime() - startTime > 1000) )
 		grenade.isCooked = true;
 	
