@@ -111,6 +111,7 @@ onPlayerConnect()
 
 		player thread onPlayerSpawned();
 		player thread onJoinedTeam();
+		player thread onJoinedSpectators();
 	}
 }
 
@@ -142,6 +143,17 @@ onJoinedTeam()
 	for(;;)
 	{
 		self waittill("joined_team");
+		self antiNadeSwitch();
+	}
+}
+
+onJoinedSpectators()
+{
+	self endon("disconnect");
+	
+	for(;;)
+	{
+		self waittill("joined_spectators");
 		self antiNadeSwitch();
 	}
 }
