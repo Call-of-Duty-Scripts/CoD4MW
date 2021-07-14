@@ -542,31 +542,23 @@ matchStartTimer()
 	matchStartTimer setPoint( "CENTER", "CENTER", 0, 0 );
 	matchStartTimer setTimer( level.prematchPeriod );
 	matchStartTimer.sort = 1001;
-	matchStartTimer.color = (1,1,0);
 	matchStartTimer.foreground = false;
 	matchStartTimer.hideWhenInMenu = true;
 	
-	
 	waitForPlayers( level.prematchPeriod );
 	
-	icountTime = int( level.prematchPeriod );
+	if ( level.prematchPeriodEnd > 0 )
+	{
+		matchStartText setText( game["strings"]["match_starting_in"] );
+		matchStartTimer setTimer( level.prematchPeriodEnd );
+		
+		wait level.prematchPeriodEnd;
+	}
 	
-	if ( countTime >= 2 )
-	{
-		while ( countTime > 0 && !level.gameEnded )
-		{
-			matchStartTimer setValue( countTime );
-			matchStartTimer thread maps\mp\gametypes\_hud::fontPulse( level );
-			if ( countTime == 2 )
-				visionSetNaked( getDvar( "mapname" ), 3.0 );
-			countTime--;
-			wait ( 1.0 );
-		}
-	}
-	else
-	{
-		visionSetNaked( getDvar( "mapname" ), 1.0 );
-	}
+	visionSetNaked( getDvar( "mapname" ), 2.0 );
+	
+	matchStartText destroyElem();
+	matchStartTimer destroyElem();
 }
 
 matchStartTimerSkip()
@@ -3798,15 +3790,8 @@ Callback_StartGameType()
 	thread maps\mp\gametypes\_battlechatter_mp::init();
 
 	thread maps\mp\gametypes\_hardpoints::init();
-	
-	/************************************************
-				Include Custom Scripts
-	************************************************/
-	
 	thread maps\mp\gametypes\_utils::mess_nextmap();
 
-	
-	
 	if ( level.teamBased )
 		thread maps\mp\gametypes\_friendicons::init();
 		
