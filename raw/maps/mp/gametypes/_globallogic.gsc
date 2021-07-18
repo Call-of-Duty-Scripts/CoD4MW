@@ -4350,14 +4350,17 @@ Callback_PlayerDisconnect()
 	}	
 	for ( entry = 0; entry < level.players.size; entry++ )
 	{
-		if ( isDefined( level.players[entry].killedPlayers[""+self.clientid] ) )
-			level.players[entry].killedPlayers[""+self.clientid] = undefined;
+		if ( isDefined( self.clientid )
+		{
+			if ( isDefined( level.players[entry].killedPlayers[""+self.clientid] ) )
+				level.players[entry].killedPlayers[""+self.clientid] = undefined;
 
-		if ( isDefined( level.players[entry].killedPlayersCurrent[""+self.clientid] ) )
-			level.players[entry].killedPlayersCurrent[""+self.clientid] = undefined;
+			if ( isDefined( level.players[entry].killedPlayersCurrent[""+self.clientid] ) )
+				level.players[entry].killedPlayersCurrent[""+self.clientid] = undefined;
 
-		if ( isDefined( level.players[entry].killedBy[""+self.clientid] ) )
-			level.players[entry].killedBy[""+self.clientid] = undefined;
+			if ( isDefined( level.players[entry].killedBy[""+self.clientid] ) )
+				level.players[entry].killedBy[""+self.clientid] = undefined;
+		}
 	}
 
 	if ( level.gameEnded )
