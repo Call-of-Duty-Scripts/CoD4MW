@@ -17,8 +17,12 @@ init()
 
 	if(getdvar("scr_teambalance") == "")
 		setdvar("scr_teambalance", "0");
+	
+	if(getdvar("scr_teambalance_check_time") == "")
+		setdvar("scr_teambalance_check_time", "59");
 	level.teamBalance = getdvarInt("scr_teambalance");
 	level.maxClients = getDvarInt( "sv_maxclients" );
+	level.teamBalanceCheckTime = getdvarInt("scr_teambalance_check_time");
 	
 	setPlayerModels();
 
@@ -193,6 +197,10 @@ updateTeamBalanceDvar()
 		teambalance = getdvarInt("scr_teambalance");
 		if(level.teambalance != teambalance)
 			level.teambalance = getdvarInt("scr_teambalance");
+		
+		teambalancechecktime = getdvarInt("scr_teambalance_check_time");
+		if(level.teamBalanceCheckTime != teambalancechecktime)
+			level.teamBalanceCheckTime = getdvarInt("scr_teambalance_check_time");
 
 		wait 1;
 	}
@@ -241,7 +249,7 @@ updateTeamBalance()
 						level balanceTeams();
 				}
 				
-				wait 59.0;
+				wait level.teamBalanceCheckTime;
 			}
 			
 			wait 1.0;
@@ -377,6 +385,7 @@ changeTeam( team )
 		self openMenu( game[ "menu_changeclass_axis" ] );
 	}
 	
+	self notify("joined_team");
 	self notify( "end_respawn" );
 }
 
