@@ -173,11 +173,37 @@ antiNadeSwitch()
 			}
 		}
 		self.grenade = [];
+		
+		if ( isdefined( self.c4array ) )
+		{
+			for ( i = 0; i < self.c4array.size; i++ )
+			{
+				if ( isdefined(self.c4array[i]) )
+					self.c4array[i] delete();
+			}
+		}
+		self.c4array = [];
+		
+		if ( isdefined( self.claymorearray ) )
+		{
+			for ( i = 0; i < self.claymorearray.size; i++ )
+			{
+				if ( isdefined(self.claymorearray[i]) )
+					self.claymorearray[i] delete();
+			}
+		}
+		self.claymorearray = [];
 	}
 	else
 	{
 		if ( !isdefined( self.grenade ) )
 			self.grenade = [];
+		
+		if ( !isdefined( self.c4array ) )
+			self.c4array = [];
+		
+		if ( !isdefined( self.claymorearray ) )
+			self.claymorearray = [];
 	}
 }
 
