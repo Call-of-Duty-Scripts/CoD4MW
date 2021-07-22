@@ -1371,8 +1371,8 @@ useHoldThinkLoop( player, lastWeapon )
 			
 			if ( isDefined( useWeapon ) )
 			{
-				player setWeaponAmmoStock( useWeapon, 1 );
-				player setWeaponAmmoClip( useWeapon, 1 );
+				player setWeaponAmmoStock( useWeapon, 0 );
+				player setWeaponAmmoClip( useWeapon, 0 );
 				if ( lastWeapon != "none" )
 					player switchToWeapon( lastWeapon );
 				else
