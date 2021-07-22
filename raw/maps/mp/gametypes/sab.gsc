@@ -683,7 +683,8 @@ bombPlanted( destroyedObj, team )
 	if ( isDefined( destroyedObj.exploderIndex ) )
 		exploder( destroyedObj.exploderIndex );
 	
-	[[level._setTeamScore]]( team, [[level._getTeamScore]]( team ) + 1 );
+	if ( !level.gameEnded )
+		[[level._setTeamScore]]( team, [[level._getTeamScore]]( team ) + 1 );
 	
 	setGameEndTime( 0 );
 	
