@@ -4350,7 +4350,7 @@ Callback_PlayerDisconnect()
 	}	
 	for ( entry = 0; entry < level.players.size; entry++ )
 	{
-		if ( isDefined( self.clientid )
+		if ( isDefined( self.clientid ) )
 		{
 			if ( isDefined( level.players[entry].killedPlayers[""+self.clientid] ) )
 				level.players[entry].killedPlayers[""+self.clientid] = undefined;
