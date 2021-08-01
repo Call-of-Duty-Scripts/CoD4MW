@@ -1,0 +1,31 @@
+VERSION             "1"
+CONFIG              "C:\trees\cod3\cod3\bin\StringEd.cfg"
+FILENOTES           "Extracted from fastfile."
+
+REFERENCE           XUI_GG
+LANG_ENGLISH        "Gungame"
+
+REFERENCE           XUI_ASS
+LANG_ENGLISH        "Assasination"
+
+REFERENCE           XUI_CTF
+LANG_ENGLISH        "Capture The Flag"
+
+REFERENCE           XUI_FTAG
+LANG_ENGLISH        "Freeze Tag"
+
+REFERENCE           XUI_KC
+LANG_ENGLISH        "Kill Confirmed"
+
+REFERENCE           XUI_LMS
+LANG_ENGLISH        "Last Man Standing"
+
+REFERENCE           XUI_LTS
+LANG_ENGLISH        "Last Team Standing"
+
+REFERENCE           XUI_OITS
+LANG_ENGLISH        "One In The Chamber"
+
+REFERENCE           XUI_SS
+LANG_ENGLISH        "Sharpshooter"
+
