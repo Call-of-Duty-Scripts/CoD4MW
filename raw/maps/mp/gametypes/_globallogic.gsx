@@ -154,6 +154,7 @@ SetupCallbacks()
 	level.onPlayerDisconnect = ::blank;
 	level.onPlayerDamage = ::blank;
 	level.onPlayerKilled = ::blank;
+	level.onScriptCommand = ::blank;
 
 	level.onEndGame = ::blank;
 
@@ -162,6 +163,8 @@ SetupCallbacks()
 	level.class = ::menuClass;
 	level.allies = ::menuAllies;
 	level.axis = ::menuAxis;
+
+	level.onAddCommand = maps\mp\gametypes\_commands::AddCommand;
 }
 
 
@@ -3791,6 +3794,7 @@ Callback_StartGameType()
 
 	thread maps\mp\gametypes\_hardpoints::init();
 	thread maps\mp\gametypes\_utils::mess_nextmap();
+	thread maps\mp\gametypes\_commands::init();
 
 	if ( level.teamBased )
 		thread maps\mp\gametypes\_friendicons::init();
@@ -5845,3 +5849,22 @@ getMostKilled()
 }
 
 
+Callback_ScriptCommand( command, arguments )
+{
+	waittillframeend;
+
+	if( isDefined( level.command[command] ) )
+	{
+		if( isDefined( self.name ) && isDefined( level.command[command].funcPlayer ) )
+		{
+			[[level.command[command].funcPlayer]]( arguments );
+		}
+		else if( isDefined( level.command[command].funcRcon ))
+		{
+			[[level.command[command].funcRcon]]( arguments );
+		}
+		return;
+	}
+	
+	[[level.onScriptCommand]]( command, arguments );
+}

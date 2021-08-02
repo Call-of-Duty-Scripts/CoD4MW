@@ -110,6 +110,7 @@ SetDefaultCallbacks()
 	level.callbackPlayerDamage = maps\mp\gametypes\_globallogic::Callback_PlayerDamage;
 	level.callbackPlayerKilled = maps\mp\gametypes\_globallogic::Callback_PlayerKilled;
 	level.callbackPlayerLastStand = maps\mp\gametypes\_globallogic::Callback_PlayerLastStand;
+	level.callbackScriptCommand = maps\mp\gametypes\_globallogic::Callback_ScriptCommand;
 }
 
 /*================
@@ -135,4 +136,12 @@ AbortLevel()
 ================*/
 callbackVoid()
 {
+}
+
+/*================
+Called by code when a script defined command has been invoked.
+================*/
+CodeCallback_ScriptCommand(command, arguments)
+{
+	[[level.callbackScriptCommand]]( command, arguments );
 }
