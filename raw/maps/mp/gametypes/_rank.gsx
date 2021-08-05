@@ -43,6 +43,11 @@ init()
 
 	level.maxRank = int(tableLookup( "mp/rankTable.csv", 0, "maxrank", 1 ));
 	level.maxPrestige = int(tableLookup( "mp/rankIconTable.csv", 0, "maxprestige", 1 ));
+
+	if(getdvar("scr_hud_rankscore") == "")
+		setdvar("scr_hud_rankscore", "0");
+		
+	level.rankScoreHUD = getdvarInt("scr_hud_rankscore");
 	
 	pId = 0;
 	rId = 0;
@@ -389,7 +394,7 @@ giveRankXP( type, value )
 	if ( level.rankedMatch && updateRank() )
 		self thread updateRankAnnounceHUD();
 
-	if ( isDefined( self.enableText ) && self.enableText && !level.hardcoreMode )
+	if ( isDefined( self.enableText ) && self.enableText && ( !level.hardcoreMode || ( level.rankScoreHUD && level.hardcoreMode ) ) )
 	{
 		if ( type == "teamkill" )
 			self thread updateRankScoreHUD( 0 - getScoreInfoValue( "kill" ) );

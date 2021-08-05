@@ -64,8 +64,8 @@ initNotifyMessage()
 	}
 	else
 	{
-		titleSize = 2.5;
-		textSize = 1.75;
+		titleSize = 1.75;
+		textSize = 1.4;
 		iconSize = 30;
 		font = "objective";
 		point = "TOP";

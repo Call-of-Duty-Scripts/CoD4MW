@@ -8,6 +8,8 @@ Gsc scripts with bug fixes for [CoD4xServer](https://github.com/callofduty4x/CoD
 
 - ```scr_teambalance_check_time``` - Team balance check time. Default 59 
 
+- ```scr_hud_rankscore``` - Visible rank XP for player. For hardcore mode only. Default 0
+
 # An example of adding new chat commands
   ```[[level.onAddCommand]](command, functionPlayer , functionRcon, points);```
   

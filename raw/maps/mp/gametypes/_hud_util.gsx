@@ -458,10 +458,7 @@ createBar( color, width, height, flashFrac )
 	barElemBG.color = (0,0,0);
 	barElemBG.alpha = 0.5;
 	barElemBG setParent( level.uiParent );
-	if ( !level.splitScreen )
-		barElemBG setShader( "progress_bar_bg", width + 4, height + 4 );
-	else
-		barElemBG setShader( "progress_bar_bg", width + 0, height + 0 );
+	barElemBG setShader( "progress_bar_bg", width + 0, height + 0 );
 	barElemBG.hidden = false;
 	
 	return barElemBG;
@@ -485,7 +482,7 @@ createPrimaryProgressBar()
 	if ( level.splitScreen )
 		bar setPoint("TOP", undefined, level.primaryProgressBarX, level.primaryProgressBarY);
 	else
-		bar setPoint("CENTER", undefined, level.primaryProgressBarX, level.primaryProgressBarY);
+		bar setPoint("BOTTOM", undefined, level.primaryProgressBarX, level.primaryProgressBarY);
 
 	return bar;
 }
@@ -495,7 +492,7 @@ createPrimaryProgressBarText()
 	if ( level.splitScreen )
 		text setPoint("TOP", undefined, level.primaryProgressBarTextX, level.primaryProgressBarTextY);
 	else
-		text setPoint("CENTER", undefined, level.primaryProgressBarTextX, level.primaryProgressBarTextY);
+		text setPoint("BOTTOM", undefined, level.primaryProgressBarTextX, level.primaryProgressBarTextY);
 	
 	text.sort = -1;
 	return text;
