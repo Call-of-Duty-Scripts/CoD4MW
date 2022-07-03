@@ -603,10 +603,15 @@ playPlaneFx()
 {
 	self endon ( "death" );
 
-	playfxontag( level.fx_airstrike_afterburner, self, "tag_engine_right" );
-	playfxontag( level.fx_airstrike_afterburner, self, "tag_engine_left" );
-	playfxontag( level.fx_airstrike_contrail, self, "tag_right_wingtip" );
-	playfxontag( level.fx_airstrike_contrail, self, "tag_left_wingtip" );
+	while( isDefined( self ) )
+	{
+		playfxontag( level.fx_airstrike_afterburner, self, "tag_engine_right" );
+		playfxontag( level.fx_airstrike_afterburner, self, "tag_engine_left" );
+		playfxontag( level.fx_airstrike_contrail, self, "tag_right_wingtip" );
+		playfxontag( level.fx_airstrike_contrail, self, "tag_left_wingtip" );
+		
+		wait 2;
+	}
 }
 
 
